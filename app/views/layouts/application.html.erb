@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AgendaeduMessageBox</title>
+    <title>Agenda Edu - Message Box</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,22 @@
   </head>
 
   <body>
-    <%= yield %>
+    <main>
+      <div class="container">
+      	<div class="row">
+      		<div class="wrapper">
+      	    <%= render "shared/sidebar" %>
+            <div class="content">
+              <div class="col-md-12">
+                <div class="row">
+                  <h3><span class="glyphicon glyphicon-envelope"></span>Message Box</h3>
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+      		</div>
+      	</div>
+      </div>
+    </main>
   </body>
 </html>

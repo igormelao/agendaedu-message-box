@@ -30,6 +30,7 @@ RSpec.describe MessagesController, type: :controller do
     it "expect the request message to equals @message" do
       @message_hash = JSON.parse(response.body)
       expect(@message_hash["id"]).to              eql(message.id)
+      expect(@message_hash["subject"]).to         eql(message.subject)
       expect(@message_hash["body"]).to            eql(message.body)
       expect(@message_hash["sender"]["id"]).to    eql(message.sender.id)
       expect(@message_hash["receiver"]["id"]).to  eql(message.receiver.id)
@@ -38,7 +39,8 @@ RSpec.describe MessagesController, type: :controller do
   end
 
   describe "POST #create" do
-
+    render_views
+    
     context "create message successfully" do
       before(:each) do
         post :create, params: { message: valid_attributes, receiver_email: valid_attributes[:receiver][:email] }
@@ -50,6 +52,7 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       it "with rights attributes" do
+        expect(Message.last.subject).to     eql(valid_attributes[:subject])
         expect(Message.last.body).to        eql(valid_attributes[:body])
         expect(Message.last.sender.id).to   eql(valid_attributes[:sender][:id])
         expect(Message.last.receiver.id).to eql(valid_attributes[:receiver][:id])
@@ -61,7 +64,7 @@ RSpec.describe MessagesController, type: :controller do
     context "create message with errors" do
       it "redirect to root with errors" do
         post :create, params: { message: invalid_attributes, receiver_email: valid_attributes[:receiver][:email] }
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(200)
       end
     end
   end

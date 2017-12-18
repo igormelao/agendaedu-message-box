@@ -1,0 +1,27 @@
+<%= link_to "NOVA MENSAGEM", messages_new_path(), class: "btn btn-success" %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Assunto</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%if @messages.nil? %>
+      <tr>
+        <td colspan=4>Sua caixa de mensagens está vazia!</td>
+      </tr>
+    <% else %>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= link_to message.sender.name, messages_path(message) %></td>
+          <td><%= truncate(message.subject, :length => 14) %></td>
+          <td><%= message.created_at.strftime("%d/%M/%Y") %></td>
+          <td><%= link_to "ARQUIVAR", "/messages/archive/#{message.id}", method: :put, class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

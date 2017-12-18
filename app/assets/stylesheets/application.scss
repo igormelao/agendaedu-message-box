@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "shared/sidebar";
+
+.container
+{
+    width:800px;
+    overflow:hidden;
+    display:inline-block;
+}
+
+.content
+{
+    padding-left: 200px;
+    transition: padding-left 0.5s;
+}
