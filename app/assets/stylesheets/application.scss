@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "shared/sidebar";
+@import "shared/_navbar";
+@import "shared/_sidebar";
+@import "login";
 
 .container
 {

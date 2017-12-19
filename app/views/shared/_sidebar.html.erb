@@ -1,11 +1,11 @@
 <div class="side-bar">
   <ul>
     <li class="menu-head">
-        AGENDA EDU <a href="#" class="push_menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
+        AGENDA EDU <a href="/" class="push_menu"><span class="glyphicon glyphicon-align-justify pull-right"></span></a>
     </li>
     <div class="menu">
       <li>
-          <a href="#" class="active"><span class="glyphicon glyphicon-dashboard pull-left"></span>Mensagens </a>
+          <a href="/" class="active"><span class="glyphicon glyphicon-dashboard pull-left"></span>Mensagens </a>
       </li>
       <li>
           <a href="#"><span class="glyphicon glyphicon-star pull-left"></span> Arquivadas</a>
@@ -13,6 +13,12 @@
       <li>
           <a href="#"><span class="glyphicon glyphicon-cog pull-left"></span>Enviadas</a>
       </li>
+      <li class="divider"></li>
+      <li class="divider"></li>
+      <li> Detalhes da conta</li>
+      <li><%= "Olá #{current_user.name}" %></li>
+      <li><a href="/users/edit"><span class="glyphicon glyphicon-cog pull-left"></span> Perfil</a></li>
+      <li><%= link_to('Sair', destroy_user_session_path, method: :delete) %></li>
     </div>
   </ul>
 </div>

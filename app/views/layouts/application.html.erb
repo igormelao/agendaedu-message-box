@@ -9,22 +9,41 @@
   </head>
 
   <body>
+    <header>
+      <%= render "shared/navbar"  if current_user %>
+    </header>
     <main>
-      <div class="container">
-      	<div class="row">
-      		<div class="wrapper">
-      	    <%= render "shared/sidebar" %>
-            <div class="content">
-              <div class="col-md-12">
-                <div class="row">
-                  <h3><span class="glyphicon glyphicon-envelope"></span>Message Box</h3>
-                  <%= yield %>
+      <% if current_user %>
+        <main>
+        <div class="container">
+        	<div class="row">
+        		<div class="wrapper">
+        	    <%= render "shared/sidebar" %>
+              <div class="content">
+                <div class="col-md-12">
+                  <div class="row">
+                    <h3><span class="glyphicon glyphicon-envelope"></span>Message Box</h3>
+                    <%= yield %>
+                  </div>
                 </div>
               </div>
+        		</div>
+        	</div>
+        </div>
+      </main>
+      <% else %>
+      <section id="login">
+          <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-wrap">
+                      <%= yield %>
+                    </div>
+                </div>
             </div>
-      		</div>
-      	</div>
-      </div>
+          </div>
+      </section>
+      <% end %>
     </main>
   </body>
 </html>
